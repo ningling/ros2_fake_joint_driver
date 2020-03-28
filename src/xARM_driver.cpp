@@ -99,7 +99,7 @@ xARM::init()
             }
         }       
 
-        RCLCPP_INFO(logger, "Setting joints from robot_description start position");
+        RCLCPP_INFO(logger, "Setting start position for joints from robot_description");
         for (counter=0;counter<joints_count;counter++)
         {
             start_pos_it=start_position_map.find(joint_names_[counter]);
