@@ -22,6 +22,7 @@ fake_joint_driver_node: //Node name of this driver. It should be the same as the
             - 1.571
             - 0.785
 ```
-2. The trajectory controller node name is "fake_joint_trajectory_controller" which subscribing message name "/fake_joint_trajectory_controller/joint_trajectory"
+2. If no startup position yaml file set, or the parameters name are NOT the valid ones, all start position of joints specified in urdf file will be set to 0.0. 
+3. The trajectory controller node name is "fake_joint_trajectory_controller" which subscribing message name "/fake_joint_trajectory_controller/joint_trajectory"
 
     
