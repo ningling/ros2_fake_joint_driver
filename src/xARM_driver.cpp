@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <urdf/model.h>
+#include <unistd.h>
 #include "fake_joint_ros2/xARM_driver.hpp"
+#define HW_HANDLING_DURATION 5e5 //Macro for fake joint hardware operation time. Should be remove on real hardware.
 
 hardware_interface::hardware_interface_ret_t
 xARM::init()
@@ -155,6 +157,11 @@ hardware_interface::hardware_interface_ret_t
 xARM::read()
 {
     //Do nothing in fake_joint project; For real driver, please fill in the code to access the real hardware for each joint's position and update pos_, vel_ (optional) and eff_(optional)
+    if (chg_flg==true)
+    {
+        usleep(HW_HANDLING_DURATION);
+    }
+
     return hardware_interface::HW_RET_OK;
 }
 
@@ -174,9 +181,16 @@ xARM::write()
             }
             
         }
-        
+        RCLCPP_INFO(logger, "_______________________________________________");
         //For real driver, please fill in this function with the write operation to the real hardware. 
         pos_=cmd_;
+        chg_flg=true;
+        usleep(HW_HANDLING_DURATION);
     }
+    else
+    {
+        chg_flg=false;
+    }
+    
     return hardware_interface::HW_RET_OK;
 }

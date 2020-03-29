@@ -55,7 +55,7 @@ int main(int argc, char** argv)
         
     hardware_interface::hardware_interface_ret_t ret;
     //double rate_val=1.0/rclcpp::Duration(0.01).seconds();
-    double rate_val=100.0; //Updating in 100Hz.
+    double rate_val=1000.0; //Updating in 100Hz.
     rclcpp::Rate rate(rate_val);
     RCLCPP_INFO(logger, "Updating in %.3f Hz", rate_val);
     while (rclcpp::ok()) 
