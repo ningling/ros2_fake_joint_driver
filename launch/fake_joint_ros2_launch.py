@@ -42,9 +42,9 @@ def generate_launch_description():
                      node_name='robot_state', 
                      output='screen',
                      arguments=['config/xARM.urdf'])
-    
 
 
+                     
     fake_joint_ros2_driver_node=Node(package='fake_joint_ros2',
                                                         node_executable='xARM_drv_node',
                                                         output='screen',
