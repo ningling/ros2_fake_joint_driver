@@ -1,6 +1,9 @@
 This project is fake_joint_driver for ROS2. MoveIt2 now is in Beta. The demo code need fake_joint_driver. But the code I found is for ROS1. That is why I developed this driver to work with MoveIt2 Beta demo code. 
-The project is depending on ros2_control. Please get ros2_control first. Please check out https://github.com/ros-controls/ros2_control.
-To avoid the same project name with ROS1 fake_joint_driver, this project changed the package name to fake_joint_ros2. If you want to use it on moveit2 demo, please change the 'Fake joint driver' Node name in the launch file 'run_moveit_cpp.launch.py' from 'fake_joint_driver_node' to 'fake_joint_ros2' like the following:
+
+The project is depending on ros2_control. Please get ros2_control first. Please check out https://github.com/ros-controls/ros2_control. You need both ros2_control and ros2_controller packages. 
+
+To avoid the same project name with ROS1 fake_joint_driver, this project changed the package name to fake_joint_ros2. If you want to use it on moveit2 demo, please change the 'Fake joint driver' Node name in the launch file 'run_moveit_cpp.launch.py' from 'fake_joint_driver_node' to 'fake_joint_ros2' like the following.
+
 Origin
 ```
     # Fake joint driver
