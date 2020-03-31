@@ -28,8 +28,8 @@ find_package(urdf REQUIRED)
 
 include_directories(include)
 
-add_executable(xARM_drv_node src/xARM_driver_node.cpp src/xARM_driver.cpp)
-ament_target_dependencies(xARM_drv_node rclcpp controller_manager urdf)
+add_executable(fake_joint_driver_node src/fake_joint_driver_node_ros2.cpp src/fake_joint_driver_ros2.cpp)
+ament_target_dependencies(fake_joint_driver_node rclcpp controller_manager urdf)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -43,7 +43,7 @@ if(BUILD_TESTING)
 endif()
 
 install (TARGETS 
-                xARM_drv_node
+                fake_joint_driver_node
                 DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

@@ -1,7 +1,7 @@
 #include "hardware_interface/robot_hardware.hpp"
 #include <rclcpp/rclcpp.hpp>
 
-class xARM : public hardware_interface::RobotHardware
+class fake_arm : public hardware_interface::RobotHardware
 {
     private:
         bool chg_flg=true; //to monitor whether the position have changed. This flag is to save the unneccessary read access to hardware. 
@@ -16,17 +16,17 @@ class xARM : public hardware_interface::RobotHardware
 
         std::vector<hardware_interface::OperationMode> op_mode_;
 
-        const rclcpp::Logger  logger=rclcpp::get_logger("xARM_logger");
+        const rclcpp::Logger  logger=rclcpp::get_logger("fake_arm_logger");
 
         int trajectory_point_counter=0;
 
         
 
     public:
-        xARM(void){};
+        fake_arm(void){};
         hardware_interface::hardware_interface_ret_t init();
         hardware_interface::hardware_interface_ret_t read();
         hardware_interface::hardware_interface_ret_t write();
         std::vector<std::string> joint_names_;
-        ~xARM(void){};
+        ~fake_arm(void){};
 };

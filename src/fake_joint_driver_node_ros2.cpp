@@ -1,7 +1,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include  "controller_manager/controller_manager.hpp"
 #include <iostream>
-#include "fake_joint_ros2/xARM_driver.hpp"
+#include "fake_joint_ros2/fake_joint_driver.hpp"
 void spin (std::shared_ptr<rclcpp::executors::MultiThreadedExecutor> exe)
 {
     exe->spin();
@@ -11,10 +11,10 @@ int main(int argc, char** argv)
 {
     rclcpp::init(argc, argv);
     const rclcpp::Logger logger=rclcpp::get_logger("fake_driver_main");
-    auto my_xARM = std::make_shared<xARM>();
+    auto my_arm = std::make_shared<fake_arm>();
      
 
-    if (my_xARM->init()!=hardware_interface::HW_RET_OK)
+    if (my_arm->init()!=hardware_interface::HW_RET_OK)
     {
         RCLCPP_ERROR(logger, "failed to initialize hardware!\n");
         return -1;
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 
     auto executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
 
-   controller_manager::ControllerManager ctlmgr(my_xARM, executor,  "xARM_controller_mgr");
+   controller_manager::ControllerManager ctlmgr(my_arm, executor,  "xARM_controller_mgr");
 
     ctlmgr.load_controller(
         "ros2_state_controller",
@@ -60,14 +60,14 @@ int main(int argc, char** argv)
     RCLCPP_INFO(logger, "Updating in %.3f Hz", rate_val);
     while (rclcpp::ok()) 
     {
-        ret=my_xARM->read();
+        ret=my_arm->read();
         if (ret != hardware_interface::HW_RET_OK){
             RCLCPP_ERROR(logger, "read operation failed!");
         }
 
         ctlmgr.update();
 
-        ret=my_xARM->write();
+        ret=my_arm->write();
         if (ret!=hardware_interface::HW_RET_OK){
             RCLCPP_ERROR(logger, "write operation failed!");
         }
