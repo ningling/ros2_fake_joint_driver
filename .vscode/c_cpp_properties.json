@@ -8,10 +8,10 @@
             "includePath": [
                 "/home/ningling/Documents/MyCode/ROS2/fake_joint_ros2/include/**",
                 "/usr/include/**",
-                "/home/ningling/Documents/RefCode/ros2_control/install/controller_interface/include/**",
-                "/home/ningling/Documents/RefCode/ros2_control/install/controller_manager/include/**",
-                "/home/ningling/Documents/RefCode/ros2_control/install/controller_parameter_server/include/**",
-                "/home/ningling/Documents/RefCode/ros2_control/install/hardware_interface/include/**",
+                "/home/ningling/software/ros2_control/install/controller_interface/include/**",
+                "/home/ningling/software/ros2_control/install/controller_manager/include/**",
+                "/home/ningling/software/ros2_control/install/controller_parameter_server/include/**",
+                "/home/ningling/software/ros2_control/install/hardware_interface/include/**",
                 "/opt/ros/eloquent/include/**"
             ],
             "name": "ROS",

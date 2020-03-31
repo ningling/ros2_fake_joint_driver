@@ -18,6 +18,8 @@ class xARM : public hardware_interface::RobotHardware
 
         const rclcpp::Logger  logger=rclcpp::get_logger("xARM_logger");
 
+        int trajectory_point_counter=0;
+
         
 
     public:

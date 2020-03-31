@@ -50,7 +50,7 @@ def generate_launch_description():
                                                         output='screen',
                                                         emulate_tty=True,
                                                         parameters=['config/xARM_controllers.yaml', 
-                                                        'config/start_positions.yaml',
+                                                        'config/start_positions_all_zero.yaml',
                                                         robot_description]
                                                         )
     return LaunchDescription([rviz_node, robot_state_node, fake_joint_ros2_driver_node])

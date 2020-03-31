@@ -7,8 +7,8 @@
   <material name="blue">
     <color rgba="0 0 0.8 1"/>
   </material>
-  <material name="black">
-    <color rgba="0 0 0 1"/>
+  <material name="green">
+    <color rgba="0 0.6 0 1"/>
   </material>
   <material name="white">
     <color rgba="1 1 1 1"/>
@@ -35,6 +35,7 @@
         <cylinder length="0.01" radius="0.06"/>
       </geometry>
       <material name="white"/>
+      <origin xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
@@ -45,10 +46,11 @@
 
   <joint name="base_to_rotary_table" type="revolute">
     <axis xyz="0 0 1"/>
-    <limit effort="2.0" lower="0.0" upper="4.19" velocity="0.5"/>
+    <limit effort="2.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
     <parent link="base_link"/>
     <child link="rotary_table"/>
-    <origin rpy="0 0 1" xyz="0 0 0.0175"/>
+    <origin xyz="0 0 0.035"/>
+    <!--origin rpy="0 0 1" xyz="0 0 0.0175"/-->
   </joint>
 
   <link name="servo5_link">
@@ -56,6 +58,7 @@
       <geometry>
         <box size="0.04402 0.027 0.028"/>
       </geometry>
+      <material name="green"/>
     </visual>
     <collision>
       <geometry>
@@ -75,6 +78,7 @@
       <geometry>
         <box size="0.033 0.003 0.055"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0.0015 0.0125"/>
     </visual>
     <collision>
@@ -98,6 +102,7 @@
       <geometry>
         <box size="0.033 0.042 0.003"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 -0.021 0"/>
     </visual>
     <collision>
@@ -122,6 +127,7 @@
       <geometry>
         <box size="0.033 0.003 0.055"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0.0015 -0.0275"/>
     </visual>
     <collision>
@@ -143,6 +149,7 @@
       <geometry>
         <cylinder length="0.03" radius="0.0109"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.015"/>
     </visual>
     <collision>
@@ -164,6 +171,7 @@
       <geometry>
         <box size="0.025 0.042 0.003"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.0015"/>
     </visual>
     <collision>
@@ -185,6 +193,7 @@
       <geometry>
         <box size="0.025 0.003 0.045"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.0225"/>
     </visual>
     <collision>
@@ -206,6 +215,7 @@
       <geometry>
         <box size="0.025 0.003 0.045"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.0225"/>
     </visual>
     <collision>
@@ -227,6 +237,7 @@
       <geometry>
         <box size="0.02292 0.027 0.04822"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0.0135 0.01174"/>
     </visual>
     <collision>
@@ -250,6 +261,7 @@
       <geometry>
         <cylinder length="0.021" radius="0.011435"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.0105"/>
     </visual>
     <collision>
@@ -271,6 +283,7 @@
       <geometry>
         <box size="0.02292 0.027 0.04822"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.02411"/>
     </visual>
     <collision>
@@ -292,6 +305,7 @@
       <geometry>
         <box size="0.04698 0.003 0.06371"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="-0.01013 0.0015 0.018495"/>
     </visual>
     <collision>
@@ -315,6 +329,7 @@
       <geometry>
         <box size="0.04698 0.04250 0.02738"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="-0.02349 -0.02125 -0.01369"/>
     </visual>
     <collision>
@@ -336,6 +351,7 @@
       <geometry>
         <box size="0.04698 0.003 0.06371"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="-0.02349 -0.0015 -0.031855"/>
     </visual>
     <collision>
@@ -357,6 +373,7 @@
       <geometry>
         <cylinder length="0.022" radius="0.01"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="0 0 0.011"/>
     </visual>
     <collision>
@@ -380,6 +397,7 @@
       <geometry>
         <box size="0.05137 0.05682 0.02047"/>
       </geometry>
+      <material name="green"/>
       <origin xyz="-0.015685 0 0.010235"/>
     </visual>
     <collision>
@@ -410,6 +428,7 @@
       <geometry>
         <box size="0.015 0.015 0.1"/>
       </geometry>
+      <material name="green"/>
     </visual>
     <collision>
       <origin xyz="0.0075 0 0.035"/>

@@ -2,7 +2,7 @@
 #include <urdf/model.h>
 #include <unistd.h>
 #include "fake_joint_ros2/xARM_driver.hpp"
-#define HW_HANDLING_DURATION 5e5 //Macro for fake joint hardware operation time. Should be remove on real hardware.
+#define HW_HANDLING_DURATION 2e5 //Macro for fake joint hardware operation time. Should be remove on real hardware.
 
 hardware_interface::hardware_interface_ret_t
 xARM::init()
@@ -181,6 +181,8 @@ xARM::write()
             }
             
         }
+        trajectory_point_counter++;
+        RCLCPP_INFO(logger, "Trajectory points # %d", trajectory_point_counter);
         RCLCPP_INFO(logger, "_______________________________________________");
         //For real driver, please fill in this function with the write operation to the real hardware. 
         pos_=cmd_;
@@ -191,6 +193,6 @@ xARM::write()
     {
         chg_flg=false;
     }
-    
+
     return hardware_interface::HW_RET_OK;
 }
