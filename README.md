@@ -44,5 +44,6 @@ fake_joint_driver_node: //Node name of this driver. It should be the same as the
 ```
 2. If no startup position yaml file set, or the parameters name are NOT the valid ones, all start position of joints specified in urdf file will be set to 0.0. 
 3. The trajectory controller node name is "fake_joint_trajectory_controller" which subscribing message name "/fake_joint_trajectory_controller/joint_trajectory"
+4. The fake driver will also bring up a joint state controller which will publish joint_state message. The node name of the publisher is 'ros2_state_controller'
 
     

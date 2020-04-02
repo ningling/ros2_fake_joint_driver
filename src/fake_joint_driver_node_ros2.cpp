@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 
     auto executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
 
-   controller_manager::ControllerManager ctlmgr(my_arm, executor,  "xARM_controller_mgr");
+   controller_manager::ControllerManager ctlmgr(my_arm, executor,  "fake_joint_controller_mgr");
 
     ctlmgr.load_controller(
         "ros2_state_controller",
