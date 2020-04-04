@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <urdf/model.h>
 #include <unistd.h>
+#include <exception>
 #include "fake_joint_ros2/fake_joint_driver.hpp"
  //Macro for fake joint hardware operation time in us(1e-6 second). Should be remove on real hardware.
 #define HW_HANDLING_DURATION 1
@@ -23,7 +24,8 @@ fake_arm::init()
     rclcpp::Node drv_node("fake_joint_driver_node", options.allow_undeclared_parameters(true).automatically_declare_parameters_from_overrides(true));
     rclcpp::Parameter param_joints_name=drv_node.get_parameter("start_position.joints");
     rclcpp::Parameter param_joints_value=drv_node.get_parameter("start_position.values");
-
+    //logger=drv_node.get_logger();
+    
     urdf_model.initString(drv_node.get_parameter("robot_description").as_string());
     
     //From the input URDF file to get joints info
@@ -36,7 +38,11 @@ fake_arm::init()
         }
         
         joint_set.insert(joint.name);
+        //RCLCPP_INFO(logger, "From URDF read it->first=%s, joint[%d] is %s", it->first.c_str(), counter, joint.name.c_str());
+        counter++;
     }
+
+    counter=0;
 
     std::copy(joint_set.begin(), joint_set.end(), std::back_inserter(joint_names_));
     joints_count=joint_names_.size();
@@ -124,6 +130,7 @@ fake_arm::init()
     {
         hardware_interface::JointStateHandle state_handle(joint_name, &pos_[i], &vel_[i], &eff_[i] );
         joint_state_handle_[i]=state_handle;
+        //RCLCPP_INFO(logger, "joint_name_[%d]=%s",i, joint_name.c_str());
                 
         if (register_joint_state_handle(&joint_state_handle_[i])!=hardware_interface::HW_RET_OK)
         {
@@ -152,16 +159,17 @@ fake_arm::init()
         ++i;
     }
     return hardware_interface::HW_RET_OK;
+    
 }
 
 hardware_interface::hardware_interface_ret_t
 fake_arm::read()
 {
     //Do nothing in fake_joint project; For real driver, please fill in the code to access the real hardware for each joint's position and update pos_, vel_ (optional) and eff_(optional)
-    if (chg_flg==true)
+    /*if (chg_flg==true)
     {
         usleep(HW_HANDLING_DURATION);
-    }
+    }*/
 
     return hardware_interface::HW_RET_OK;
 }
@@ -186,9 +194,15 @@ fake_arm::write()
         RCLCPP_INFO(logger, "Trajectory points # %d", trajectory_point_counter);
         RCLCPP_INFO(logger, "_______________________________________________");
         //For real driver, please fill in this function with the write operation to the real hardware. 
-        pos_=cmd_;
+        try{
+            pos_=cmd_;
+        }catch(std::exception e)
+        {
+            RCLCPP_INFO(logger, e.what());
+            return hardware_interface::HW_RET_ERROR;
+        }
         chg_flg=true;
-        usleep(HW_HANDLING_DURATION);
+        //usleep(HW_HANDLING_DURATION);
     }
     else
     {

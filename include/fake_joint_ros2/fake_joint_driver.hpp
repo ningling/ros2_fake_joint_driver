@@ -17,10 +17,8 @@ class fake_arm : public hardware_interface::RobotHardware
         std::vector<hardware_interface::OperationMode> op_mode_;
 
         const rclcpp::Logger  logger=rclcpp::get_logger("fake_arm_logger");
-
         int trajectory_point_counter=0;
-
-        
+        //rclcpp::Logger logger;      
 
     public:
         fake_arm(void){};

@@ -1,0 +1,17 @@
+fake_joint_driver_node:
+  ros__parameters:
+    start_position:
+      joints:
+        - base_to_rotary_table
+        - servo5_link_to_armlink1
+        - armlink1_to_servo4
+        - servo3_to_armlink3_part1
+        - servo2_to_armlink4
+        - left_gripper_joint
+      values:
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0
+        - 0.0

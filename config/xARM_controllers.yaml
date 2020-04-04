@@ -1,0 +1,16 @@
+fake_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - base_to_rotary_table
+      - servo5_link_to_armlink1
+      - armlink1_to_servo4
+      - servo3_to_armlink3_part1
+      - servo2_to_armlink4
+      - left_gripper_joint
+    write_op_modes:
+      - base_to_rotary_table
+      - servo5_link_to_armlink1
+      - armlink1_to_servo4
+      - servo3_to_armlink3_part1
+      - servo2_to_armlink4
+      - left_gripper_joint
