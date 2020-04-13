@@ -49,7 +49,7 @@ int main(int argc, char** argv)
         executor->cancel();
         return -1;
     }
-    RCLCPP_INFO(logger, "Controller Manager config done!");
+    //RCLCPP_INFO(logger, "Controller Manager config done!");
 
     if (ctlmgr.activate() != controller_interface::CONTROLLER_INTERFACE_RET_SUCCESS)
     {
@@ -57,19 +57,20 @@ int main(int argc, char** argv)
         executor->cancel();
         return -1;
     }
-    RCLCPP_INFO(logger, "Controller Manager Activated.");
+    //RCLCPP_INFO(logger, "Controller Manager Activated.");
 
     hardware_interface::hardware_interface_ret_t ret;
 
-    double rate_val=1000.0; //Updating in 100Hz.
+    double rate_val=1000.0; //Updating in 1000Hz.
     rclcpp::Rate rate(rate_val);
-    RCLCPP_INFO(logger, "Updating in %.3f Hz", rate_val);
+    RCLCPP_INFO(logger, "Updating in %.2f Hz", rate_val);
 
     uint8_t current_state=traj_controller->get_lifecycle_node()->get_current_state().id();
-
-    while (rclcpp::ok()) 
+    
+    //while (rclcpp::ok()) 
+    while (current_state==lifecycle_msgs::msg::State::PRIMARY_STATE_ACTIVE)
     {
-        if (current_state!=lifecycle_msgs::msg::State::PRIMARY_STATE_ACTIVE)
+    /*    if (current_state!=lifecycle_msgs::msg::State::PRIMARY_STATE_ACTIVE)
         {
             RCLCPP_WARN(logger, "Trajectory state is NOT ACTIVE, it is:");
             switch (current_state)
@@ -103,7 +104,7 @@ int main(int argc, char** argv)
 
             }
         }
-
+        */
         ret=my_arm->read();
         if (ret != hardware_interface::HW_RET_OK){
             RCLCPP_ERROR(logger, "read operation failed!");
@@ -120,9 +121,6 @@ int main(int argc, char** argv)
     
 
 
-    //state_controller->get_lifecycle_node()->cleanup();
-    //ctlmgr.cleanup();
-    
     rclcpp::shutdown();
     return 0;
 }

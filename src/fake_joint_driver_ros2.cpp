@@ -130,7 +130,6 @@ fake_arm::init()
     {
         hardware_interface::JointStateHandle state_handle(joint_name, &pos_[i], &vel_[i], &eff_[i] );
         joint_state_handle_[i]=state_handle;
-        //RCLCPP_INFO(logger, "joint_name_[%d]=%s",i, joint_name.c_str());
                 
         if (register_joint_state_handle(&joint_state_handle_[i])!=hardware_interface::HW_RET_OK)
         {
@@ -183,7 +182,7 @@ fake_arm::write()
     {
         for (counter=0;counter<pos_.size();counter++)
         {
-            RCLCPP_INFO(logger, "cmd[%d]=%.3f; current pos[%d]=%.3f", counter, cmd_[counter], counter, pos_[counter]);
+            RCLCPP_INFO(logger, "%s\t\tcmd[%d]=%.3f\tcurrent pos[%d]=%.3f", joint_names_[counter].c_str(),  counter, cmd_[counter], counter, pos_[counter]);
             if (std::abs(vel_[counter])>1e-9||std::abs(eff_[counter])>1e-19)
             {
                 RCLCPP_INFO(logger, "vel[%d]=%.3f; effort[%d]=%.3f", counter, vel_[counter], counter, eff_[counter]);
@@ -196,7 +195,7 @@ fake_arm::write()
         //For real driver, please fill in this function with the write operation to the real hardware. 
         try{
             pos_=cmd_;
-        }catch(std::exception e)
+        }catch(std::exception &e)
         {
             RCLCPP_INFO(logger, e.what());
             return hardware_interface::HW_RET_ERROR;

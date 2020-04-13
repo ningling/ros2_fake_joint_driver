@@ -28,7 +28,7 @@ def generate_launch_description():
     robot_description_config = load_local_file('config/xARM.urdf')
     robot_description = {'robot_description' : robot_description_config}
 
-    """
+
     rviz_config_file = 'config/urdf-ros1.rviz'
     rviz_node = Node(package='rviz2',
                      node_executable='rviz2',
@@ -36,7 +36,7 @@ def generate_launch_description():
                      output='log',
                      arguments=['-d', rviz_config_file],
                      parameters=[robot_description])
-    """
+    
     
     robot_state_node = Node(package='robot_state_publisher',
                      node_executable='robot_state_publisher',
@@ -64,5 +64,5 @@ def generate_launch_description():
                                                         )
     return LaunchDescription([rviz_node, robot_state_node, fake_joint_ros2_driver_node, pos_control_node])
     """
-    return LaunchDescription([robot_state_node, fake_joint_ros2_driver_node])
+    return LaunchDescription([rviz_node, robot_state_node, fake_joint_ros2_driver_node])
     

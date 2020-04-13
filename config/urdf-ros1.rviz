@@ -64,7 +64,8 @@ Visualization Manager:
           Value: true
       Name: RobotModel
       Robot Alpha: 0.5
-      Robot Description: robot_description
+      Description Source: Topic
+      Description Topic: robot_description
       Value: true
       Visual Enabled: true
   Enabled: true
