@@ -6,7 +6,7 @@
                 "limitSymbolsToIncludedHeaders": true
             },
             "includePath": [
-                "/home/ningling/Documents/MyCode/ROS2/fake_joint_ros2/include/**",
+                "/home/ningling/MyCode/ROS2/fake_joint_ros2/include/**",
                 "/usr/include/**",
                 "/home/ningling/software/ros2_control/install/controller_interface/include/**",
                 "/home/ningling/software/ros2_control/install/controller_manager/include/**",
