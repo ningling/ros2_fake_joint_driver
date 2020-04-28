@@ -2,6 +2,28 @@ import os
 from launch import LaunchDescription
 from launch_ros.actions import Node
 import yaml
+from ament_index_python.packages import get_package_share_directory
+
+def load_file(package_name, file_path):
+    package_path = get_package_share_directory(package_name)
+    absolute_file_path = os.path.join(package_path, file_path)
+
+    try:
+        with open(absolute_file_path, 'r') as file:
+            return file.read()
+    except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
+        return None
+
+def load_yaml(package_name, file_path):
+    package_path = get_package_share_directory(package_name)
+    absolute_file_path = os.path.join(package_path, file_path)
+
+    try:
+        with open(absolute_file_path, 'r') as file:
+            return yaml.load(file)
+    except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
+        return None
+
 
 def load_local_yaml(file_path):
     current_path = os.path.abspath('.')
@@ -25,9 +47,9 @@ def load_local_file(file_path):
 
 
 def generate_launch_description():
-    robot_description_config = load_local_file('config/xARM.urdf')
+    robot_description_config = load_file('fake_joint_ros2','config/xARM.urdf')
     robot_description = {'robot_description' : robot_description_config}
-
+    #print (robot_description)
 
     rviz_config_file = 'config/urdf-ros1.rviz'
     rviz_node = Node(package='rviz2',
@@ -41,10 +63,9 @@ def generate_launch_description():
     robot_state_node = Node(package='robot_state_publisher',
                      node_executable='robot_state_publisher',
                      node_name='robot_state', 
-                     output='log',
+                     output='both',
                      arguments=['config/xARM.urdf'])
-                     #parameters=[robot_description]
-                    #)
+                     #parameters=[robot_description])
 
 
                      
